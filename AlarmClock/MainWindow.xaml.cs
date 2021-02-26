@@ -2,17 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 using System.Windows.Threading;
 
 namespace AlarmClock
@@ -26,7 +17,7 @@ namespace AlarmClock
         DispatcherTimer timer = new DispatcherTimer();
         DispatcherTimer timer1 = new DispatcherTimer();
         SoundPlayer sound = new SoundPlayer();
-
+        public List<AlarmClocks> alarmclock = new List<AlarmClocks>();
         public MainWindow()
         {
             InitializeComponent();
@@ -51,33 +42,42 @@ namespace AlarmClock
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            timer.Stop();
             sound.Stop();
             MessageBox.Show("Your timer is stopped", "Stopping...");
         }
-       
 
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            alarmclock.Add(new AlarmClocks() { alarmMinutes = Convert.ToInt32(Minutes.Text), alarmHours = Convert.ToInt32(Hours.Text), alarmDate = Convert.ToDateTime(Calendar.SelectedDate) });
+
+        }
         void timer_Tick(object sender, EventArgs e)
         {
-          
+
             DateTime currentTime = DateTime.Now;
             DateTime userTime = new DateTime();
             TimeSpan ts = new TimeSpan(Convert.ToInt32(Hours.Text), Convert.ToInt32(Minutes.Text), 0);
             userTime = userTime.Date + ts;
-            if (currentTime.Hour == userTime.Hour && currentTime.Minute == userTime.Minute && currentTime.Date == (Calendar.SelectedDate))
+            foreach (var al in alarmclock.ToList<AlarmClocks>())
             {
-                timer.Stop();
-                try
+                if (currentTime.Hour == al.alarmHours && currentTime.Minute == al.alarmMinutes && currentTime.Date == al.alarmDate)
                 {
-                   
-                    sound.Play();
-                    MessageBox.Show("Time!");
+                    alarmclock.Remove(al);
+                    try
+                    {
+
+                        sound.Play();
+                        MessageBox.Show("Time!");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("finished!");
+                    }
                 }
-                catch
-                {
-                    MessageBox.Show("finished!");
-                }
+
             }
+           
         }
         private void btnHoursUp_Click(object sender, RoutedEventArgs e)
         {

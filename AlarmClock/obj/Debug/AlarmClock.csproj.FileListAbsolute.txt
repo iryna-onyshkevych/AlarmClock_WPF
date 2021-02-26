@@ -13,3 +13,5 @@ C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\Ala
 C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\AlarmClock.csproj.CoreCompileInputs.cache
 C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\AlarmClock.exe
 C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\AlarmClock.pdb
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\SoundSettingsWindow.g.cs
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\SoundSettingsWindow.baml
