@@ -1,0 +1,15 @@
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\bin\Debug\AlarmClock.exe.config
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\bin\Debug\AlarmClock.exe
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\bin\Debug\AlarmClock.pdb
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\AlarmClock.csprojAssemblyReference.cache
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\MainWindow.g.cs
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\App.g.cs
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\AlarmClock_MarkupCompile.cache
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\AlarmClock_MarkupCompile.lref
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\MainWindow.baml
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\AlarmClock.g.resources
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\AlarmClock.Properties.Resources.resources
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\AlarmClock.csproj.GenerateResource.cache
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\AlarmClock.csproj.CoreCompileInputs.cache
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\AlarmClock.exe
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\AlarmClock.pdb
