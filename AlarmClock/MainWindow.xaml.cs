@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Media;
 using System.Windows;
-
+using System.Windows.Data;
 using System.Windows.Threading;
 
 namespace AlarmClock
@@ -18,6 +18,9 @@ namespace AlarmClock
         DispatcherTimer timer1 = new DispatcherTimer();
         SoundPlayer sound = new SoundPlayer();
         public List<AlarmClocks> alarmclock = new List<AlarmClocks>();
+        public List<AlarmClocks> alarmclock1 = new List<AlarmClocks>();
+       
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -27,11 +30,14 @@ namespace AlarmClock
             timer1.Interval = TimeSpan.FromSeconds(1);
             timer1.Tick += timer1_Tick;
             timer1.Start();
+                //CollectionViewSource itemCollectionViewSource;
+                     //itemCollectionViewSource = (CollectionViewSource)(FindResource("ItemCollectionViewSource"));
+                     //itemCollectionViewSource.Source = alarmclock
         }
 
         void timer1_Tick(object sender, EventArgs e)
         {
-            TimeLabel.Content = DateTime.Now.ToLongTimeString();
+            //TimeLabel.Content = DateTime.Now.ToLongTimeString();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -50,7 +56,7 @@ namespace AlarmClock
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             alarmclock.Add(new AlarmClocks() { alarmMinutes = Convert.ToInt32(Minutes.Text), alarmHours = Convert.ToInt32(Hours.Text), alarmDate = Convert.ToDateTime(Calendar.SelectedDate) });
-
+            MessageBox.Show("New alarmclock added!");
         }
         void timer_Tick(object sender, EventArgs e)
         {
@@ -132,5 +138,38 @@ namespace AlarmClock
             this.Minutes.Text = buff.ToString();
         }
 
+        private void Alarmclock_list(object sender, RoutedEventArgs e)
+        {
+            SoundSettingsWindow settingsWindow = new SoundSettingsWindow();
+            settingsWindow.Show();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            dataGrid1.ItemsSource = null;
+            dataGrid1.ItemsSource = alarmclock; 
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            
+            if (dataGrid1.SelectedItems.Count > 0)
+            {
+                for (int i = 0; i < dataGrid1.SelectedItems.Count; i++)
+                {
+                    AlarmClocks clocks = dataGrid1.SelectedItems[i] as AlarmClocks;
+
+                    if (clocks != null)
+                    {
+                        alarmclock.Remove(clocks);
+                    }
+                }
+            }
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

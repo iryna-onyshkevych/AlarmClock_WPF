@@ -14,18 +14,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" x:Name="phonesGrid">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Title}" Header="Minutes" Width="100"/>
-                <DataGridTextColumn Binding="{Binding Company}" Header="Hours" Width="110"/>
-                <DataGridTextColumn Binding="{Binding Price}" Header="Date" Width="70"/>
-            </DataGrid.Columns>
-        </DataGrid>
-
-     
+        <DataGrid  Height="148" HorizontalAlignment="Left" Margin="12,21,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="225" />
+        <Button Click="Button_Click" >show</Button>
     </Grid>
 </Window>

@@ -19,12 +19,44 @@ namespace AlarmClock
     /// </summary>
     public partial class SoundSettingsWindow : Window
     {
+        //List<AlarmClocks> alarms = new List<AlarmClocks>();
+        //private List<AlarmClocks> LoadCollectionData()
+        //{
+        //    List<AlarmClocks> authors = new List<AlarmClocks>();
+        //    authors.Add(new AlarmClocks()
+        //    {
+        //        alarmMinutes = 11,
+        //        alarmDate = Convert.ToDateTime("12/10/2002"),
+        //        alarmHours = 15
+        //    }) ;
+
+
+
+        //    return authors;
+        //}
+        MainWindow main = new MainWindow();
+
         public SoundSettingsWindow()
         {
             InitializeComponent();
-            MainWindow main = new MainWindow();
+            //dataGrid1.ItemsSource = main.alarmclock; // устанавливаем привязку к кэшу
+
+            //alarms.Add(new AlarmClocks { alarmMinutes = 11, alarmDate = Convert.ToDateTime("12/10/2002"), alarmHours = 15 });
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //dataGrid1.ItemsSource = main.alarmclock; // устанавливаем привязку к кэшу
+            //MessageBox.Show(main.test.ToString());
+            //foreach (var al in main.alarmclock)
+            //{
+            //    MessageBox.Show(al.alarmHours.ToString());
+
+            //}
             
-            phonesGrid.ItemsSource = main.alarmclock; // устанавливаем привязку к кэшу
+            //MessageBox.Show(main.alarmclock1[0].alarmMinutes.ToString());
+            //dataGrid1.ItemsSource = main.; // устанавливаем привязку к кэшу
+
         }
     }
 }
