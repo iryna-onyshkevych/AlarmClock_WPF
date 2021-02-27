@@ -58,5 +58,6 @@ namespace AlarmClock
             //dataGrid1.ItemsSource = main.; // устанавливаем привязку к кэшу
 
         }
+
     }
 }

@@ -1,0 +1,27 @@
+﻿<Window x:Class="AlarmClock.UpdateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AlarmClock"
+        mc:Ignorable="d"
+        Title="UpdateWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0">Hour</Label>
+        <TextBox Grid.Row="0" Name="alhour" Margin="40,0,0,0"></TextBox>
+        <Label Grid.Row="1">Minute</Label>
+        <TextBox Grid.Row="1" Name="alminute" Margin="40,0,0,0"></TextBox>
+        <Label Grid.Row="2">Day</Label>
+        <TextBox Grid.Row="2" Name="alday" Margin="40,0,0,0"></TextBox>
+        <Button Grid.Row="3" Name="submit" Click="submit_Click">OK</Button>
+    </Grid>
+    
+</Window>

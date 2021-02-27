@@ -45,12 +45,12 @@
             
         </StackPanel>
         <StackPanel Grid.Row="1">
-            <!--<Label Name="TimeLabel" FontSize="48" HorizontalAlignment="Left" VerticalAlignment="Bottom" />-->
+            <Label Name="TimeLabel" FontSize="48" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
             <Grid>
                 <DataGrid  Height="148" HorizontalAlignment="Right" Margin="12,21,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="225" />
-                <Button Click="Button_Click_4" Width="25" Margin="5"  HorizontalAlignment="Left">Reload</Button>
                 <Button Click="Button_Click_5" Width="25" Margin="115,5,5,5" >Update</Button>
                 <Button Click="Button_Click_6" Width="25" Margin="5" HorizontalAlignment="Center" >Delete</Button>
+                <Button Click="Button_Click_7" Width="25" Margin="-230,5,5,5" >Save</Button>
 
             </Grid>
         </StackPanel>

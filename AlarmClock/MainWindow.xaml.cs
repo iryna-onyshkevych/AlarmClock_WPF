@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Media;
 using System.Windows;
@@ -17,10 +18,9 @@ namespace AlarmClock
         DispatcherTimer timer = new DispatcherTimer();
         DispatcherTimer timer1 = new DispatcherTimer();
         SoundPlayer sound = new SoundPlayer();
-        public List<AlarmClocks> alarmclock = new List<AlarmClocks>();
-        public List<AlarmClocks> alarmclock1 = new List<AlarmClocks>();
-       
-        
+        public ObservableCollection<AlarmClocks> alarmclock = new ObservableCollection<AlarmClocks>();
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -37,7 +37,7 @@ namespace AlarmClock
 
         void timer1_Tick(object sender, EventArgs e)
         {
-            //TimeLabel.Content = DateTime.Now.ToLongTimeString();
+            TimeLabel.Content = DateTime.Now.ToLongTimeString();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -57,6 +57,7 @@ namespace AlarmClock
         {
             alarmclock.Add(new AlarmClocks() { alarmMinutes = Convert.ToInt32(Minutes.Text), alarmHours = Convert.ToInt32(Hours.Text), alarmDate = Convert.ToDateTime(Calendar.SelectedDate) });
             MessageBox.Show("New alarmclock added!");
+            dataGrid1.ItemsSource = alarmclock;
         }
         void timer_Tick(object sender, EventArgs e)
         {
@@ -144,11 +145,7 @@ namespace AlarmClock
             settingsWindow.Show();
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-            dataGrid1.ItemsSource = null;
-            dataGrid1.ItemsSource = alarmclock; 
-        }
+      
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
@@ -169,7 +166,33 @@ namespace AlarmClock
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-
+            UpdateWindow updateWindow = new UpdateWindow();
+            updateWindow.Show();
+           
         }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            UpdateWindow updateWindow = new UpdateWindow();
+            MessageBox.Show(updateWindow.m.ToString());
+            //int newminutes = updateWindow.m;
+            int newhours = Convert.ToInt32(updateWindow.alhour.Text);
+            DateTime newday = Convert.ToDateTime(updateWindow.alday.Text);
+            if (dataGrid1.SelectedItems.Count > 0)
+            {
+                for (int i = 0; i < dataGrid1.SelectedItems.Count; i++)
+                {
+                    AlarmClocks clocks = dataGrid1.SelectedItems[i] as AlarmClocks;
+
+                    if (clocks != null)
+                    {
+                        //clocks.alarmMinutes = newminutes;
+                        clocks.alarmHours = newhours;
+                        clocks.alarmDate = newday;
+                    }
+                }
+            }
+        }
+        
     }
 }
