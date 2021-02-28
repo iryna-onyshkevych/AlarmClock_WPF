@@ -19,11 +19,10 @@ namespace AlarmClock
     /// </summary>
     public partial class UpdateWindow : Window
     {
-        public int m;
-        //public int ь
-        //{
-        //    get { return passwordBox.Text; }
-        //}
+        public int newminutes { get; set; }
+        public int newhours { get; set; }
+        public DateTime newdays { get; set; }
+
         public UpdateWindow()
         {
             InitializeComponent();
@@ -31,7 +30,9 @@ namespace AlarmClock
 
         private void submit_Click(object sender, RoutedEventArgs e)
         {
-            int m = Convert.ToInt32(this.alminute.Text);
+            newminutes = Convert.ToInt32(alminute.Text);
+            newhours = Convert.ToInt32(alhour.Text);
+            newdays = Convert.ToDateTime(alday.Text);
             this.Close();
         }
     }

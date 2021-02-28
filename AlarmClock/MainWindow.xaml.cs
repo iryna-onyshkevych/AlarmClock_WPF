@@ -20,7 +20,7 @@ namespace AlarmClock
         SoundPlayer sound = new SoundPlayer();
         public ObservableCollection<AlarmClocks> alarmclock = new ObservableCollection<AlarmClocks>();
 
-
+        public int newm;
         public MainWindow()
         {
             InitializeComponent();
@@ -30,9 +30,9 @@ namespace AlarmClock
             timer1.Interval = TimeSpan.FromSeconds(1);
             timer1.Tick += timer1_Tick;
             timer1.Start();
-                //CollectionViewSource itemCollectionViewSource;
-                     //itemCollectionViewSource = (CollectionViewSource)(FindResource("ItemCollectionViewSource"));
-                     //itemCollectionViewSource.Source = alarmclock
+            DataContext = alarmclock;
+
+
         }
 
         void timer1_Tick(object sender, EventArgs e)
@@ -167,17 +167,13 @@ namespace AlarmClock
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
             UpdateWindow updateWindow = new UpdateWindow();
-            updateWindow.Show();
-           
-        }
+            updateWindow.ShowDialog();
 
-        private void Button_Click_7(object sender, RoutedEventArgs e)
-        {
-            UpdateWindow updateWindow = new UpdateWindow();
-            MessageBox.Show(updateWindow.m.ToString());
-            //int newminutes = updateWindow.m;
-            int newhours = Convert.ToInt32(updateWindow.alhour.Text);
-            DateTime newday = Convert.ToDateTime(updateWindow.alday.Text);
+            //string txt = updateWindow.newtxt;
+            //MessageBox.Show(txt);
+            int newminutes = updateWindow.newminutes;
+            int newhours = updateWindow.newhours;
+            DateTime newday = updateWindow.newdays;
             if (dataGrid1.SelectedItems.Count > 0)
             {
                 for (int i = 0; i < dataGrid1.SelectedItems.Count; i++)
@@ -186,13 +182,19 @@ namespace AlarmClock
 
                     if (clocks != null)
                     {
-                        //clocks.alarmMinutes = newminutes;
+                        clocks.alarmMinutes = newminutes;
                         clocks.alarmHours = newhours;
                         clocks.alarmDate = newday;
                     }
                 }
             }
         }
-        
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+
     }
 }
