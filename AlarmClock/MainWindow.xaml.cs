@@ -25,15 +25,14 @@ namespace AlarmClock
         public MainWindow()
         {
             InitializeComponent();
-            //sound.Open(new Uri( @"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic.wav"));
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer1.Interval = TimeSpan.FromSeconds(1);
             timer1.Tick += timer1_Tick;
             timer1.Start();
-            DataContext = alarmclock;
-            Style style = this.FindResource("brashBackground") as Style;
-            btnHoursDown.Style = style;
+            //DataContext = alarmclock;
+            //Style style = this.FindResource("brashBackground") as Style;
+            //btnHoursDown.Style = style;
         }
 
         void timer1_Tick(object sender, EventArgs e)
@@ -44,30 +43,26 @@ namespace AlarmClock
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             timer.Start();
-            MessageBox.Show("Timer is started", "Starting...");
+            MessageBox.Show("Alarm Clock's are on", "Starting...");
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             sound.Stop();
-            MessageBox.Show("Your timer is stopped", "Stopping...");
+            //MessageBox.Show("Your sound is stopped", "Stopping...");
         }
-
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             alarmclock.Add(new AlarmClocks() { alarmMinutes = Convert.ToInt32(Minutes.Text), alarmHours = Convert.ToInt32(Hours.Text), alarmDate = Convert.ToDateTime(Calendar.SelectedDate),
             alarmMessage = message.Text});
-            MessageBox.Show("New alarmclock added!");
+            MessageBox.Show("New alarm clock added!");
             dataGrid1.ItemsSource = alarmclock;
         }
         void timer_Tick(object sender, EventArgs e)
         {
 
             DateTime currentTime = DateTime.Now;
-            //DateTime userTime = new DateTime();
-            //TimeSpan ts = new TimeSpan(Convert.ToInt32(Hours.Text), Convert.ToInt32(Minutes.Text), 0);
-            //userTime = userTime.Date + ts;
             foreach (var al in alarmclock.ToList<AlarmClocks>())
             {
                 if (currentTime.Hour == al.alarmHours && currentTime.Minute == al.alarmMinutes && currentTime.Date == al.alarmDate)
@@ -152,8 +147,6 @@ namespace AlarmClock
             settingsWindow.Show();
         }
 
-
-
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
 
@@ -175,9 +168,6 @@ namespace AlarmClock
         {
             UpdateWindow updateWindow = new UpdateWindow();
             updateWindow.ShowDialog();
-
-            //string txt = updateWindow.newtxt;
-            //MessageBox.Show(txt);
             int newminutes = updateWindow.newminutes;
             int newhours = updateWindow.newhours;
             string newmessage = updateWindow.newmessage;

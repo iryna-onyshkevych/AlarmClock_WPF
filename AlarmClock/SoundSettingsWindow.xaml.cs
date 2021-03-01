@@ -19,49 +19,14 @@ namespace AlarmClock
     /// </summary>
     public partial class SoundSettingsWindow : Window
     {
-        //List<AlarmClocks> alarms = new List<AlarmClocks>();
-        //private List<AlarmClocks> LoadCollectionData()
-        //{
-        //    List<AlarmClocks> authors = new List<AlarmClocks>();
-        //    authors.Add(new AlarmClocks()
-        //    {
-        //        alarmMinutes = 11,
-        //        alarmDate = Convert.ToDateTime("12/10/2002"),
-        //        alarmHours = 15
-        //    }) ;
-
-
-
-        //    return authors;
-        //}
-        MainWindow main = new MainWindow();
-
+       
         public SoundSettingsWindow()
         {
             InitializeComponent();
-            //dataGrid1.ItemsSource = main.alarmclock; // устанавливаем привязку к кэшу
-
-            //alarms.Add(new AlarmClocks { alarmMinutes = 11, alarmDate = Convert.ToDateTime("12/10/2002"), alarmHours = 15 });
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //dataGrid1.ItemsSource = main.alarmclock; // устанавливаем привязку к кэшу
-            //MessageBox.Show(main.test.ToString());
-            //foreach (var al in main.alarmclock)
-            //{
-            //    MessageBox.Show(al.alarmHours.ToString());
-
-            //}
-            
-            //MessageBox.Show(main.alarmclock1[0].alarmMinutes.ToString());
-            //dataGrid1.ItemsSource = main.; // устанавливаем привязку к кэшу
-
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            MainWindow main = new MainWindow();
             ((MainWindow)Application.Current.MainWindow).sound.Volume = sondslider.Value;
         }
 
@@ -70,8 +35,8 @@ namespace AlarmClock
             ComboBox comboBox = (ComboBox)sender;
             ComboBoxItem selectedItem = (ComboBoxItem)comboBox.SelectedItem;
             string audioname = selectedItem.Name.ToString();
-            
-                switch (audioname)
+
+            switch (audioname)
             {
                 case "theme1":
                     ((MainWindow)Application.Current.MainWindow).sound.Open(new Uri(@"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic2.wav"));
@@ -83,26 +48,22 @@ namespace AlarmClock
                     break;
                 case "theme3":
                     Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-                    dlg.FileName = "Audio"; // Default file name
-                    dlg.DefaultExt = ".wav"; // Default file extension
-                    dlg.Filter = "Audio (.wav)|*.wav"; // Filter files by extension
-
-                    // Show open file dialog box
+                    dlg.FileName = "Audio";
+                    dlg.DefaultExt = ".wav";
+                    dlg.Filter = "Audio (.wav)|*.wav";
                     Nullable<bool> result = dlg.ShowDialog();
-
-                    // Process open file dialog box results
                     if (result == true)
                     {
-                        // Open document
                         string filename = dlg.FileName;
                         ((MainWindow)Application.Current.MainWindow).sound.Open(new Uri(filename));
                     }
                     break;
-                default:
-                    ((MainWindow)Application.Current.MainWindow).sound.Open(new Uri(@"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic.wav"));
-                    MessageBox.Show(selectedItem.Content.ToString());
-                    break;
+                //default:
+                //    ((MainWindow)Application.Current.MainWindow).sound.Open(new Uri(@"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic.wav"));
+                //    MessageBox.Show(selectedItem.Content.ToString());
+                //    break;
             }
+            
            
         }
     }
