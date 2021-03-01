@@ -7,14 +7,14 @@
         mc:Ignorable="d"
         Title="SoundSettingsWindow" Height="250" Width="500">
     <Grid>
-        <ComboBox  Margin="90,10,0,0"  Name="themeList" Height="30" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left" SelectionChanged="themeList_SelectionChanged">
+        <ComboBox  Margin="90,10,0,0"  Name="themeList" Height="30" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left" SelectionChanged="ThemeList_SelectionChanged">
             <ComboBoxItem x:Name="theme1">Sound1</ComboBoxItem>
             <ComboBoxItem x:Name="theme2">Sound2</ComboBoxItem>
             <ComboBoxItem x:Name="theme3">Choose your song</ComboBoxItem>
         </ComboBox>
         <Label Margin="0,10,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left"  Height="30" Width="80" >Choose song</Label>
         <Label VerticalAlignment="Bottom" Margin="10,30">Sound Volume</Label>
-        <Slider x:Name="sondslider" VerticalAlignment="Bottom" Background="LightBlue" Height="25" Margin="10"
+        <Slider x:Name="soundslider" VerticalAlignment="Bottom" Background="LightBlue" Height="25" Margin="10"
        ValueChanged="Slider_ValueChanged" Value="0.55" Maximum="1" />
     </Grid>
 </Window>

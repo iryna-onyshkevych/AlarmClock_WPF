@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace AlarmClock
 {
@@ -19,7 +9,6 @@ namespace AlarmClock
     /// </summary>
     public partial class SoundSettingsWindow : Window
     {
-       
         public SoundSettingsWindow()
         {
             InitializeComponent();
@@ -27,10 +16,10 @@ namespace AlarmClock
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            ((MainWindow)Application.Current.MainWindow).sound.Volume = sondslider.Value;
+            ((MainWindow)Application.Current.MainWindow).sound.Volume = soundslider.Value;
         }
 
-        private void themeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ThemeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox comboBox = (ComboBox)sender;
             ComboBoxItem selectedItem = (ComboBoxItem)comboBox.SelectedItem;
@@ -63,8 +52,6 @@ namespace AlarmClock
                 //    MessageBox.Show(selectedItem.Content.ToString());
                 //    break;
             }
-            
-           
         }
     }
 }

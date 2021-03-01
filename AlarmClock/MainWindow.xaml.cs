@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
-using System.Media;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Threading;
 
@@ -15,51 +13,49 @@ namespace AlarmClock
     /// </summary>
     public partial class MainWindow : Window
     {
-
         DispatcherTimer timer = new DispatcherTimer();
         DispatcherTimer timer1 = new DispatcherTimer();
         public MediaPlayer sound = new MediaPlayer();
         public ObservableCollection<AlarmClocks> alarmclock = new ObservableCollection<AlarmClocks>();
-
-        public int newm;
         public MainWindow()
         {
             InitializeComponent();
             timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
+            timer.Tick += Timer_Tick;
             timer1.Interval = TimeSpan.FromSeconds(1);
-            timer1.Tick += timer1_Tick;
+            timer1.Tick += Timer1_Tick;
             timer1.Start();
             //DataContext = alarmclock;
             //Style style = this.FindResource("brashBackground") as Style;
             //btnHoursDown.Style = style;
         }
 
-        void timer1_Tick(object sender, EventArgs e)
+      
+        void Timer1_Tick(object sender, EventArgs e)
         {
             TimeLabel.Content = DateTime.Now.ToLongTimeString();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AlClockOn_Click(object sender, RoutedEventArgs e)
         {
             timer.Start();
             MessageBox.Show("Alarm Clock's are on", "Starting...");
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void SoundOff_Click(object sender, RoutedEventArgs e)
         {
             sound.Stop();
             //MessageBox.Show("Your sound is stopped", "Stopping...");
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void AddAlClock_Click(object sender, RoutedEventArgs e)
         {
             alarmclock.Add(new AlarmClocks() { alarmMinutes = Convert.ToInt32(Minutes.Text), alarmHours = Convert.ToInt32(Hours.Text), alarmDate = Convert.ToDateTime(Calendar.SelectedDate),
             alarmMessage = message.Text});
             MessageBox.Show("New alarm clock added!");
             dataGrid1.ItemsSource = alarmclock;
         }
-        void timer_Tick(object sender, EventArgs e)
+        void Timer_Tick(object sender, EventArgs e)
         {
 
             DateTime currentTime = DateTime.Now;
@@ -74,80 +70,80 @@ namespace AlarmClock
                             sound.Open(new Uri( @"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic.wav"));
                         }
                         sound.Play();
-                        MessageBox.Show(al.alarmMessage);
+                        if (al.alarmMessage != "")
+                        {
+                            MessageBox.Show(al.alarmMessage);
+                        }
                     }
                     catch
                     {
                         MessageBox.Show("finished!");
                     }
                     alarmclock.Remove(al);
-
                 }
-
-
             }
 
         }
-        private void btnHoursUp_Click(object sender, RoutedEventArgs e)
+        private void HoursUp_Click(object sender, RoutedEventArgs e)
         {
-            var buff = int.Parse(this.Hours.Text);
+            var curHour = int.Parse(this.Hours.Text);
 
-            buff++;
-            if (buff > 23)
+            curHour++;
+            if (curHour > 23)
             {
-                buff = 0;
-                this.Hours.Text = buff.ToString();
+                curHour = 0;
+                this.Hours.Text = curHour.ToString();
             }
 
-            this.Hours.Text = buff.ToString();
+            this.Hours.Text = curHour.ToString();
         }
 
-        private void btnHoursDown_Click(object sender, RoutedEventArgs e)
+        private void HoursDown_Click(object sender, RoutedEventArgs e)
         {
-            var buff = int.Parse(this.Hours.Text);
-            buff--;
-            if (buff < 0)
+            var curHour = int.Parse(this.Hours.Text);
+            curHour--;
+            if (curHour < 0)
             {
-                buff = 23;
-                this.Hours.Text = buff.ToString();
+                curHour = 23;
+                this.Hours.Text = curHour.ToString();
             }
 
-            this.Hours.Text = buff.ToString();
+            this.Hours.Text = curHour.ToString();
         }
 
-        private void btnMinUp_Click(object sender, RoutedEventArgs e)
+        private void MinutesUp_Click(object sender, RoutedEventArgs e)
         {
-            var buff = int.Parse(this.Minutes.Text);
-            buff++;
-            if (buff > 59)
+            var curMinute = int.Parse(this.Minutes.Text);
+            curMinute++;
+            if (curMinute > 59)
             {
-                buff = 0;
-                this.Minutes.Text = buff.ToString();
+                curMinute = 0;
+                this.Minutes.Text = curMinute.ToString();
             }
 
-            this.Minutes.Text = buff.ToString();
+            this.Minutes.Text = curMinute.ToString();
         }
 
-        private void btnMinDown_Click(object sender, RoutedEventArgs e)
+        private void MinutesDown_Click(object sender, RoutedEventArgs e)
         {
-            var buff = int.Parse(this.Minutes.Text);
-            buff--;
-            if (buff < 0)
+            var curMinute = int.Parse(this.Minutes.Text);
+            curMinute--;
+            if (curMinute < 0)
             {
-                buff = 59;
-                this.Minutes.Text = buff.ToString();
+                curMinute = 59;
+                this.Minutes.Text = curMinute.ToString();
             }
 
-            this.Minutes.Text = buff.ToString();
+            this.Minutes.Text = curMinute.ToString();
         }
 
-        private void Alarmclock_list(object sender, RoutedEventArgs e)
+        private void SettingsWindow_Click(object sender, RoutedEventArgs e)
         {
             SoundSettingsWindow settingsWindow = new SoundSettingsWindow();
             settingsWindow.Show();
         }
 
-        private void Button_Click_6(object sender, RoutedEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e)
         {
 
             if (dataGrid1.SelectedItems.Count > 0)
@@ -164,7 +160,7 @@ namespace AlarmClock
             }
         }
 
-        private void Button_Click_5(object sender, RoutedEventArgs e)
+        private void Update_Click(object sender, RoutedEventArgs e)
         {
             UpdateWindow updateWindow = new UpdateWindow();
             updateWindow.ShowDialog();
@@ -177,7 +173,7 @@ namespace AlarmClock
                 for (int i = 0; i < dataGrid1.SelectedItems.Count; i++)
                 {
                     AlarmClocks clocks = dataGrid1.SelectedItems[i] as AlarmClocks;
-                    MessageBox.Show(newminutes.ToString());
+                    //MessageBox.Show(newminutes.ToString());
 
                     if (clocks != null)
                     {
@@ -190,7 +186,7 @@ namespace AlarmClock
             }
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void ThemeWindow_Click(object sender, RoutedEventArgs e)
         {
             ThemeSettingsWindow themeSettings = new ThemeSettingsWindow();
             themeSettings.Show();
