@@ -19,19 +19,21 @@
         <Menu Height="20" VerticalAlignment="Top" Background="LightBlue">
             <MenuItem Header="Settings">
                 <MenuItem Header="Sound" Click="Alarmclock_list"></MenuItem>
-                <MenuItem Header="Theme" Click="Alarmclock_list"></MenuItem>
+                <MenuItem Header="Theme" Click="MenuItem_Click" ></MenuItem>
             </MenuItem>
         </Menu>
+        <Label Name="TimeLabel" FontSize="48" HorizontalAlignment="Right" VerticalAlignment="top" Margin="10,40,10,10" />
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="40 40 0 0"  Background="LightBlue" >
+           
             <DatePicker HorizontalAlignment="Left" VerticalAlignment="Center" Name="Calendar" FirstDayOfWeek="Monday" IsTodayHighlighted="False"/>
+            <TextBox Width="50" Height="50" Name="message"></TextBox>
 
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,0.4" Background="LightBlue" >
                 <StackPanel VerticalAlignment="Center" Margin="5">
                     <Button x:Name="btnHoursUp" Margin="5" Height="18" FontFamily="Marlett" FontSize="20" Content="5" Width="50" Click="btnHoursUp_Click" Background="Lavender"/>
                     <Button x:Name="btnHoursDown" Margin="5" Height="18"  FontFamily="Marlett" FontSize="20" Content="6" Width="50"  Click="btnHoursDown_Click" Background="Lavender"/>
                 </StackPanel>
-                
 
                 <TextBox x:Name="Hours" Focusable="False" Text="12" Height="38" Width="45" FontSize="23" />
                 <TextBox Text=":" FontSize="28" Height="38"  Focusable="False"/>
@@ -51,10 +53,9 @@
         </StackPanel>
         <StackPanel Grid.Row="1">
             <Grid>
-                <Label Name="TimeLabel" FontSize="48" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-                <DataGrid  Height="148" HorizontalAlignment="Right" Margin="20,20,20,20" Name="dataGrid1" VerticalAlignment="Top" Width="225" />
-                <Button Click="Button_Click_5" Width="45" Height="25" Margin="105,5,5,5" Background="AliceBlue" >Update</Button>
-                <Button Click="Button_Click_6" Width="45" Height="25" Margin="5" HorizontalAlignment="Center" Background="AliceBlue" >Delete</Button>
+                <DataGrid  Height="148" HorizontalAlignment="Left" Margin="40,20,10,20" Name="dataGrid1" VerticalAlignment="Top" Width="350" />
+                <Button Click="Button_Click_5" Width="45" Height="25"  HorizontalAlignment="Left" Margin="420,5,5,5" Background="AliceBlue" >Update</Button>
+                <Button Click="Button_Click_6" Width="45" Height="25"  HorizontalAlignment="Left" Margin="420,85,5,5" Background="AliceBlue" >Delete</Button>
             </Grid>
             <!--<Slider x:Name="sondslider" VerticalAlignment="Bottom" Height="30" 
        ValueChanged="Slider_ValueChanged" Value="0.75" Maximum="1" >

@@ -58,6 +58,9 @@
     <Compile Include="SoundSettingsWindow.xaml.cs">
       <DependentUpon>SoundSettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ThemeSettingsWindow.xaml.cs">
+      <DependentUpon>ThemeSettingsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateWindow.xaml.cs">
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
@@ -75,6 +78,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SoundSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemeSettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

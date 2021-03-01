@@ -56,7 +56,8 @@ namespace AlarmClock
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            alarmclock.Add(new AlarmClocks() { alarmMinutes = Convert.ToInt32(Minutes.Text), alarmHours = Convert.ToInt32(Hours.Text), alarmDate = Convert.ToDateTime(Calendar.SelectedDate) });
+            alarmclock.Add(new AlarmClocks() { alarmMinutes = Convert.ToInt32(Minutes.Text), alarmHours = Convert.ToInt32(Hours.Text), alarmDate = Convert.ToDateTime(Calendar.SelectedDate),
+            alarmMessage = message.Text});
             MessageBox.Show("New alarmclock added!");
             dataGrid1.ItemsSource = alarmclock;
         }
@@ -64,25 +65,30 @@ namespace AlarmClock
         {
 
             DateTime currentTime = DateTime.Now;
-            DateTime userTime = new DateTime();
-            TimeSpan ts = new TimeSpan(Convert.ToInt32(Hours.Text), Convert.ToInt32(Minutes.Text), 0);
-            userTime = userTime.Date + ts;
+            //DateTime userTime = new DateTime();
+            //TimeSpan ts = new TimeSpan(Convert.ToInt32(Hours.Text), Convert.ToInt32(Minutes.Text), 0);
+            //userTime = userTime.Date + ts;
             foreach (var al in alarmclock.ToList<AlarmClocks>())
             {
                 if (currentTime.Hour == al.alarmHours && currentTime.Minute == al.alarmMinutes && currentTime.Date == al.alarmDate)
                 {
-                    alarmclock.Remove(al);
                     try
                     {
-
+                        if (sound.Source == null)
+                        {
+                            sound.Open(new Uri( @"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic.wav"));
+                        }
                         sound.Play();
-                        MessageBox.Show("Time!");
+                        MessageBox.Show(al.alarmMessage);
                     }
                     catch
                     {
                         MessageBox.Show("finished!");
                     }
+                    alarmclock.Remove(al);
+
                 }
+
 
             }
 
@@ -174,23 +180,31 @@ namespace AlarmClock
             //MessageBox.Show(txt);
             int newminutes = updateWindow.newminutes;
             int newhours = updateWindow.newhours;
+            string newmessage = updateWindow.newmessage;
             DateTime newday = updateWindow.newdays;
             if (dataGrid1.SelectedItems.Count > 0)
             {
                 for (int i = 0; i < dataGrid1.SelectedItems.Count; i++)
                 {
                     AlarmClocks clocks = dataGrid1.SelectedItems[i] as AlarmClocks;
+                    MessageBox.Show(newminutes.ToString());
 
                     if (clocks != null)
                     {
                         clocks.alarmMinutes = newminutes;
                         clocks.alarmHours = newhours;
                         clocks.alarmDate = newday;
+                        clocks.alarmMessage = newmessage;
                     }
                 }
             }
         }
 
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ThemeSettingsWindow themeSettings = new ThemeSettingsWindow();
+            themeSettings.Show();
+        }
     }
 
 }

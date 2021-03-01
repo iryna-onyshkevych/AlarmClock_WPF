@@ -22,6 +22,7 @@ namespace AlarmClock
         public int newminutes { get; set; }
         public int newhours { get; set; }
         public DateTime newdays { get; set; }
+        public string newmessage { get; set; }
 
         public UpdateWindow()
         {
@@ -33,6 +34,7 @@ namespace AlarmClock
             newminutes = Convert.ToInt32(alminute.Text);
             newhours = Convert.ToInt32(alhour.Text);
             newdays = Convert.ToDateTime(alday.Text);
+            newmessage = almessage.Text;
             this.Close();
         }
     }

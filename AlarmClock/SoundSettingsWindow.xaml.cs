@@ -70,7 +70,8 @@ namespace AlarmClock
             ComboBox comboBox = (ComboBox)sender;
             ComboBoxItem selectedItem = (ComboBoxItem)comboBox.SelectedItem;
             string audioname = selectedItem.Name.ToString();
-            switch (audioname)
+            
+                switch (audioname)
             {
                 case "theme1":
                     ((MainWindow)Application.Current.MainWindow).sound.Open(new Uri(@"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic2.wav"));
