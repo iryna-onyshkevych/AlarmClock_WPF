@@ -6,6 +6,10 @@
         xmlns:local="clr-namespace:AlarmClock"
         mc:Ignorable="d"
         Title="AlarmClock" Height="450" Width="800">
+    <Window.Resources>
+        <SolidColorBrush x:Key="brashBackground" Color="Bisque"></SolidColorBrush>
+        <SolidColorBrush x:Key="brashtwoBackground" Color="Gainsboro"></SolidColorBrush>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition ></RowDefinition>
@@ -53,6 +57,9 @@
                 <Button Click="Button_Click_7" Width="45" Height="25" Margin="-90,5,5,5" Background="AliceBlue" >Save</Button>
 
             </Grid>
+            <!--<Slider x:Name="sondslider" VerticalAlignment="Bottom" Height="30" 
+       ValueChanged="Slider_ValueChanged" Value="0.75" Maximum="1" >
+                </Slider>-->
         </StackPanel>
 
     </Grid>

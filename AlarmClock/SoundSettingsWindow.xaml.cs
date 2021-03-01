@@ -59,5 +59,10 @@ namespace AlarmClock
 
         }
 
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            MainWindow main = new MainWindow();
+            ((MainWindow)Application.Current.MainWindow).sound.Volume = sondslider.Value;
+        }
     }
 }

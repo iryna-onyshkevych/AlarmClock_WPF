@@ -5,6 +5,7 @@ using System.Linq;
 using System.Media;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace AlarmClock
@@ -14,25 +15,25 @@ namespace AlarmClock
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+
         DispatcherTimer timer = new DispatcherTimer();
         DispatcherTimer timer1 = new DispatcherTimer();
-        SoundPlayer sound = new SoundPlayer();
+        public MediaPlayer sound = new MediaPlayer();
         public ObservableCollection<AlarmClocks> alarmclock = new ObservableCollection<AlarmClocks>();
 
         public int newm;
         public MainWindow()
         {
             InitializeComponent();
-            sound.SoundLocation = @"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic.wav";
+            sound.Open(new Uri( @"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic.wav"));
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer1.Interval = TimeSpan.FromSeconds(1);
             timer1.Tick += timer1_Tick;
             timer1.Start();
             DataContext = alarmclock;
-
-
+            Style style = this.FindResource("brashBackground") as Style;
+            btnHoursDown.Style = style;
         }
 
         void timer1_Tick(object sender, EventArgs e)
@@ -84,7 +85,7 @@ namespace AlarmClock
                 }
 
             }
-           
+
         }
         private void btnHoursUp_Click(object sender, RoutedEventArgs e)
         {
@@ -145,11 +146,11 @@ namespace AlarmClock
             settingsWindow.Show();
         }
 
-      
+
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-            
+
             if (dataGrid1.SelectedItems.Count > 0)
             {
                 for (int i = 0; i < dataGrid1.SelectedItems.Count; i++)
@@ -195,6 +196,10 @@ namespace AlarmClock
 
 
         }
-
+        //private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        //{
+        //    sound.Volume = sondslider.Value;
+        //}
     }
+
 }
