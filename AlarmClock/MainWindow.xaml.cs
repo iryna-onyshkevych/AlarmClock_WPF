@@ -25,7 +25,7 @@ namespace AlarmClock
         public MainWindow()
         {
             InitializeComponent();
-            sound.Open(new Uri( @"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic.wav"));
+            //sound.Open(new Uri( @"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic.wav"));
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer1.Interval = TimeSpan.FromSeconds(1);
@@ -191,15 +191,6 @@ namespace AlarmClock
             }
         }
 
-        private void Button_Click_7(object sender, RoutedEventArgs e)
-        {
-
-
-        }
-        //private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        //{
-        //    sound.Volume = sondslider.Value;
-        //}
     }
 
 }

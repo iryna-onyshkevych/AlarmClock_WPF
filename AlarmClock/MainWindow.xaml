@@ -18,7 +18,8 @@
 
         <Menu Height="20" VerticalAlignment="Top" Background="LightBlue">
             <MenuItem Header="Settings">
-                <MenuItem Header="All alarmclocks" Click="Alarmclock_list"></MenuItem>
+                <MenuItem Header="Sound" Click="Alarmclock_list"></MenuItem>
+                <MenuItem Header="Theme" Click="Alarmclock_list"></MenuItem>
             </MenuItem>
         </Menu>
 
@@ -54,8 +55,6 @@
                 <DataGrid  Height="148" HorizontalAlignment="Right" Margin="20,20,20,20" Name="dataGrid1" VerticalAlignment="Top" Width="225" />
                 <Button Click="Button_Click_5" Width="45" Height="25" Margin="105,5,5,5" Background="AliceBlue" >Update</Button>
                 <Button Click="Button_Click_6" Width="45" Height="25" Margin="5" HorizontalAlignment="Center" Background="AliceBlue" >Delete</Button>
-                <Button Click="Button_Click_7" Width="45" Height="25" Margin="-90,5,5,5" Background="AliceBlue" >Save</Button>
-
             </Grid>
             <!--<Slider x:Name="sondslider" VerticalAlignment="Bottom" Height="30" 
        ValueChanged="Slider_ValueChanged" Value="0.75" Maximum="1" >

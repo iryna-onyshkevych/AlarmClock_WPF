@@ -64,5 +64,45 @@ namespace AlarmClock
             MainWindow main = new MainWindow();
             ((MainWindow)Application.Current.MainWindow).sound.Volume = sondslider.Value;
         }
+
+        private void themeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            ComboBoxItem selectedItem = (ComboBoxItem)comboBox.SelectedItem;
+            string audioname = selectedItem.Name.ToString();
+            switch (audioname)
+            {
+                case "theme1":
+                    ((MainWindow)Application.Current.MainWindow).sound.Open(new Uri(@"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic2.wav"));
+                    MessageBox.Show(selectedItem.Content.ToString());
+                    break;
+                case "theme2":
+                    ((MainWindow)Application.Current.MainWindow).sound.Open(new Uri(@"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic.wav"));
+                    MessageBox.Show(selectedItem.Content.ToString());
+                    break;
+                case "theme3":
+                    Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                    dlg.FileName = "Audio"; // Default file name
+                    dlg.DefaultExt = ".wav"; // Default file extension
+                    dlg.Filter = "Audio (.wav)|*.wav"; // Filter files by extension
+
+                    // Show open file dialog box
+                    Nullable<bool> result = dlg.ShowDialog();
+
+                    // Process open file dialog box results
+                    if (result == true)
+                    {
+                        // Open document
+                        string filename = dlg.FileName;
+                        ((MainWindow)Application.Current.MainWindow).sound.Open(new Uri(filename));
+                    }
+                    break;
+                default:
+                    ((MainWindow)Application.Current.MainWindow).sound.Open(new Uri(@"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic.wav"));
+                    MessageBox.Show(selectedItem.Content.ToString());
+                    break;
+            }
+           
+        }
     }
 }
