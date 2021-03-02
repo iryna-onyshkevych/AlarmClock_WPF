@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
 using System.Xml.Serialization;
+using System.Configuration;
 
 namespace AlarmClock
 {
@@ -50,13 +51,27 @@ namespace AlarmClock
             alarmclock.Add(new AlarmClocks() { alarmMinutes = Convert.ToInt32(Minutes.Text), alarmHours = Convert.ToInt32(Hours.Text), alarmDate = Convert.ToDateTime(Calendar.SelectedDate),
             alarmMessage = message.Text});
             MessageBox.Show("New alarm clock added!");
+            
+            //XmlSerializer formatter = new XmlSerializer(typeof(ObservableCollection<AlarmClocks>));
+            //using (FileStream fs = new FileStream("alarmClocks.xml", FileMode.OpenOrCreate))
+            //{
+            //    formatter.Serialize(fs, alarmclock);
+            //}
+            XmlSerializer xs = new XmlSerializer(typeof(ObservableCollection<AlarmClocks>));
+
+            TextWriter txtWriter = new StreamWriter(@"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\bin\Debug\personsone.xml");
+
+            xs.Serialize(txtWriter, alarmclock);
+
+            txtWriter.Close();
+            string xmlString = (@"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\bin\Debug\personsone.xml");
+            XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<AlarmClocks>));
+            StreamReader reader = new StreamReader(xmlString);
+            alarmclock = (ObservableCollection<AlarmClocks>)serializer.Deserialize(reader);
+            reader.Close();
             dataGrid1.ItemsSource = alarmclock;
-            XmlSerializer formatter = new XmlSerializer(typeof(ObservableCollection<AlarmClocks>));
-            using (FileStream fs = new FileStream("alarmClocks.xml", FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, alarmclock);
-            }
         }
+        
         void Timer_Tick(object sender, EventArgs e)
         {
 
