@@ -16,26 +16,26 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <Menu Height="20" VerticalAlignment="Top" Background="LightBlue">
             <MenuItem Header="Settings">
                 <MenuItem Header="Sound" Click="SettingsWindow_Click"></MenuItem>
                 <MenuItem Header="Theme" Click="ThemeWindow_Click" ></MenuItem>
             </MenuItem>
         </Menu>
-        
+
         <Label Name="TimeLabel" FontSize="48" HorizontalAlignment="Right" VerticalAlignment="top" Margin="10,40,10,10" />
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="40 40 0 0" Height="120" Background="LightBlue" >
             <DatePicker HorizontalAlignment="Left" VerticalAlignment="Center" Name="Calendar" FirstDayOfWeek="Monday" IsTodayHighlighted="False"/>
             <TextBox Width="50" Height="50" Name="message"></TextBox>
             <StackPanel Orientation="Horizontal" Height="90" Margin="0,0,0,0.4" Background="LightBlue" >
-                
+
                 <StackPanel VerticalAlignment="Center" Margin="5">
                     <Button x:Name="btnHoursUp" Margin="5" Height="18" FontFamily="Marlett" FontSize="20" Content="5" Width="50" Click="HoursUp_Click" Background="Lavender"/>
                     <Button x:Name="btnHoursDown" Margin="5" Height="18"  FontFamily="Marlett" FontSize="20" Content="6" Width="50"  Click="HoursDown_Click" Background="Lavender"/>
                 </StackPanel>
-                
+
                 <TextBox x:Name="Hours"  Text="12" Height="38" Width="45" FontSize="23" />
                 <TextBox Text=":" FontSize="28" Height="38"  Focusable="False"/>
                 <TextBox x:Name="Minutes" Height="38" Width="45" FontSize="23" Text="0" TextAlignment="Center"/>
@@ -45,22 +45,27 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Height="50" Width="153" Margin="142,0.2,0,0.2"  HorizontalAlignment="Left">
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Height="50" Width="158" Margin="142,0.2,0,0.2"  HorizontalAlignment="Left">
             <Button Height="30" Width="30" Background="LightGoldenrodYellow" Content="off" Margin="10" Click="SoundOff_Click"></Button>
             <Button Height="30" Width="30" Background="LightPink" Content="add" Margin="10"  Click="AddAlClock_Click"></Button>
             <Button Height="30" Width="30" Background="LightCoral" Content="on" HorizontalAlignment="Left" Margin="10" Click="AlClockOn_Click"></Button>
+            <!--<Button Width="30" Background="LightCoral" Content="Show" HorizontalAlignment="Left" Margin="10,0,10,9.6" Click="AlClockListShow_Click" Height="30" VerticalAlignment="Bottom"/>-->
+
         </StackPanel>
-        
+
         <StackPanel Grid.Row="2">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="85*"/>
-                    <ColumnDefinition Width="237*"/>
+                    <ColumnDefinition Width="170*"/>
+                    <ColumnDefinition Width="153*"/>
+                    <ColumnDefinition Width="321*"/>
                 </Grid.ColumnDefinitions>
-                <DataGrid  Height="148" HorizontalAlignment="Left" Margin="40,20,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="350" Grid.ColumnSpan="2" />
-                <Button Click="Update_Click" Width="45" Height="25"  HorizontalAlignment="Left" Margin="250.374,82,0,82" Background="AliceBlue" Grid.Column="1" >Update</Button>
-                <Button Click="Delete_Click" Width="45" Height="25"  HorizontalAlignment="Left" Margin="250.374,122,0,42" Background="AliceBlue" Grid.Column="1" >Delete</Button>
+                <DataGrid  Height="148" HorizontalAlignment="Left" Margin="40,20,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="350" Grid.ColumnSpan="3" />
+                <Button Click="Update_Click" Width="45" Height="25"  HorizontalAlignment="Left" Margin="97.6,92,0,81.8" Background="AliceBlue" Grid.Column="2" >Update</Button>
+                <Button Click="Delete_Click" Width="45" Height="25"  HorizontalAlignment="Left" Margin="97.6,122,0,41.8" Background="AliceBlue" Grid.Column="2" >Delete</Button>
+                <Button Click="SaveList_Click" Width="45" Height="25"  HorizontalAlignment="Left" Margin="97.6,65,0,118.8" Background="AliceBlue" Grid.Column="2" >Save</Button>
+                <Button Click="ShowList_Click" Width="100" Height="25"  HorizontalAlignment="Left" Margin="97.6,0,0,118.8" Background="AliceBlue" Grid.Column="2" >Show Saved List</Button>
             </Grid>
         </StackPanel>
     </Grid>
