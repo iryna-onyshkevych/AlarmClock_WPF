@@ -7,8 +7,21 @@
         mc:Ignorable="d"
         Title="AlarmClock" Height="450" Width="700">
     <Window.Resources>
-        <SolidColorBrush x:Key="brashBackground" Color="Bisque"></SolidColorBrush>
-        <SolidColorBrush x:Key="brashtwoBackground" Color="Gainsboro"></SolidColorBrush>
+        <Style TargetType="Button">
+            <Setter Property="Button.FontFamily" Value="Constantia" />
+            <Setter Property="Button.FontSize" Value="13"></Setter>
+            <Setter Property="Button.BorderBrush" Value="AliceBlue"></Setter>
+            <Setter Property="Button.BorderBrush" Value="AliceBlue"></Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Button.FontFamily" Value="Constantia"/>
+        </Style>
+        <Style x:Key="pinkborder">
+            <Setter Property="Button.BorderBrush" Value="DeepPink"></Setter>
+        </Style>
+        <Style x:Key="blueborder">
+            <Setter Property="Button.BorderBrush" Value="CornflowerBlue"></Setter>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -18,16 +31,16 @@
         </Grid.RowDefinitions>
 
         <Menu Height="20" VerticalAlignment="Top" Background="LightBlue">
-            <MenuItem Header="Settings">
-                <MenuItem Header="Sound" Click="SettingsWindow_Click"></MenuItem>
-                <MenuItem Header="Theme" Click="ThemeWindow_Click" ></MenuItem>
+            <MenuItem Header="Settings"  FontFamily="Constantia">
+                <MenuItem Header="Sound" Click="SettingsWindow_Click"  FontFamily="Constantia"></MenuItem>
+                <MenuItem Header="Theme" Click="ThemeWindow_Click"  FontFamily="Constantia"></MenuItem>
             </MenuItem>
         </Menu>
 
-        <Label Name="TimeLabel" FontSize="48" HorizontalAlignment="Right" VerticalAlignment="top" Margin="10,40,10,10" />
+        <Label Name="TimeLabel" FontSize="48" FontFamily="Constantia" HorizontalAlignment="Right" Foreground="DarkGreen" VerticalAlignment="top" Margin="10,40,10,10" />
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="40,52,0,12.8" Height="120" Background="LightBlue" Width="446" >
-            <DatePicker HorizontalAlignment="Left" VerticalAlignment="Center" Name="Calendar" FirstDayOfWeek="Monday" IsTodayHighlighted="False"/>
+            <DatePicker Background="AliceBlue" FontFamily="Constantia" HorizontalAlignment="Left" VerticalAlignment="Center" Name="Calendar" FirstDayOfWeek="Monday" IsTodayHighlighted="False"/>
             <TextBox Width="50" Height="50" Name="message"></TextBox>
             <StackPanel Orientation="Horizontal" Height="90" Margin="0,0,0,0.4" Background="LightBlue" >
 
@@ -51,8 +64,8 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" Height="50" Width="251" Margin="142,0.2,0,0.2"  HorizontalAlignment="Left">
             <Button Height="30" Width="40" Background="LightGoldenrodYellow" Content="off" Margin="10" Click="SoundOff_Click"></Button>
             <Button Height="30" Width="40" Background="LightPink" Content="add" Margin="10"  Click="AddAlClock_Click"></Button>
-            <Button Height="30" Width="40" Background="LightCoral" Content="on" HorizontalAlignment="Left" Margin="10" Click="AlClockOn_Click"></Button>
-            <Button Width="45" Background="DeepPink" Content="snooze" HorizontalAlignment="Left" Margin="10,0,10,9.6" Click="AlarmSnooze_Click" Height="30" VerticalAlignment="Bottom"/>
+            <Button Height="30" Width="40" Background="LightCoral" Content="on" HorizontalAlignment="Left" Margin="10" Click="AlClockOn_Click" ></Button>
+            <Button Width="45" Background="DeepPink" Content="snooze" HorizontalAlignment="Left" Margin="10,0,10,9.6" Click="AlarmSnooze_Click"  Height="30" VerticalAlignment="Bottom"/>
 
         </StackPanel>
 
@@ -63,7 +76,7 @@
                     <ColumnDefinition Width="153*"/>
                     <ColumnDefinition Width="321*"/>
                 </Grid.ColumnDefinitions>
-                <DataGrid  Height="148" HorizontalAlignment="Left" Margin="40,20,0,0" Name="dataGrid" VerticalAlignment="Top" Width="350" Grid.ColumnSpan="3" >
+                <DataGrid  Height="148" HorizontalAlignment="Left" FontFamily="Constantia" Margin="40,20,0,0" Name="dataGrid" VerticalAlignment="Top" Width="437" Grid.ColumnSpan="3" >
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
                             <Style.Triggers>
@@ -74,10 +87,10 @@
                         </Style>
                     </DataGrid.RowStyle>
                 </DataGrid>
-                <Button Click="Update_Click" Width="45" Height="25"  HorizontalAlignment="Left" Margin="97.6,92,0,81.8" Background="AliceBlue" Grid.Column="2" >Update</Button>
-                <Button Click="Delete_Click" Width="45" Height="25"  HorizontalAlignment="Left" Margin="97.6,122,0,41.8" Background="AliceBlue" Grid.Column="2" >Delete</Button>
-                <Button Click="SaveList_Click" Width="45" Height="25"  HorizontalAlignment="Left" Margin="97.6,65,0,118.8" Background="AliceBlue" Grid.Column="2" >Save</Button>
-                <Button Click="ShowList_Click" Width="100" Height="25"  HorizontalAlignment="Left" Margin="97.6,0,0,118.8" Background="AliceBlue" Grid.Column="2" >Show Saved List</Button>
+                <Button Click="Update_Click" Width="45" Height="25"  HorizontalAlignment="Left" Margin="150,92,0,81.8" Background="AliceBlue" Grid.Column="2" Style="{StaticResource pinkborder}" >Update</Button>
+                <Button Click="Delete_Click" Width="45" Height="25"  HorizontalAlignment="Left" Margin="150,122,0,41.8" Background="AliceBlue" Grid.Column="2" Style="{StaticResource pinkborder}" >Delete</Button>
+                <Button Click="SaveList_Click" Width="45" Height="25"  HorizontalAlignment="Left" Margin="150,65,0,118.8" Background="AliceBlue" Grid.Column="2" Style="{StaticResource pinkborder}" >Save</Button>
+                <Button Click="ShowList_Click" Width="100" Height="25"  HorizontalAlignment="Left" Margin="150,0,0,118.8" Background="AliceBlue" Grid.Column="2" Style="{StaticResource pinkborder}" >Show Saved List</Button>
             </Grid>
         </StackPanel>
     </Grid>
