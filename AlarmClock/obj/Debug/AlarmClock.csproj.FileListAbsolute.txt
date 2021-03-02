@@ -19,3 +19,5 @@ C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\Ala
 C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\UpdateWindow.baml
 C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\ThemeSettingsWindow.g.cs
 C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\ThemeSettingsWindow.baml
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\AlarmSnoozeWindow.g.cs
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Debug\AlarmSnoozeWindow.baml

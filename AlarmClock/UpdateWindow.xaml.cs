@@ -8,10 +8,10 @@ namespace AlarmClock
     /// </summary>
     public partial class UpdateWindow : Window
     {
-        public int newminutes { get; set; }
-        public int newhours { get; set; }
-        public DateTime newdays { get; set; }
-        public string newmessage { get; set; }
+        public int NewMinutes { get; set; }
+        public int NewHours { get; set; }
+        public DateTime NewDay { get; set; }
+        public string NewMessage { get; set; }
 
         public UpdateWindow()
         {
@@ -20,10 +20,10 @@ namespace AlarmClock
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-            newminutes = Convert.ToInt32(alminute.Text);
-            newhours = Convert.ToInt32(alhour.Text);
-            newdays = Convert.ToDateTime(alday.Text);
-            newmessage = almessage.Text;
+            NewMinutes = Convert.ToInt32(alminute.Text);
+            NewHours = Convert.ToInt32(alhour.Text);
+            NewDay = Convert.ToDateTime(alday.Text);
+            NewMessage = almessage.Text;
             this.Close();
         }
     }

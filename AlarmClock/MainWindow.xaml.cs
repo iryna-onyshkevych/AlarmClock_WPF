@@ -14,8 +14,8 @@ namespace AlarmClock
     /// </summary>
     public partial class MainWindow : Window
     {
-        DispatcherTimer timer = new DispatcherTimer();
-        DispatcherTimer timer1 = new DispatcherTimer();
+        readonly DispatcherTimer timer = new DispatcherTimer();
+        readonly DispatcherTimer timer1 = new DispatcherTimer();
         public MediaPlayer sound = new MediaPlayer();
         public ObservableCollection<AlarmClocks> alarmclock = new ObservableCollection<AlarmClocks>();
 
@@ -47,10 +47,10 @@ namespace AlarmClock
         
         private void AddAlClock_Click(object sender, RoutedEventArgs e)
         {
-            alarmclock.Add(new AlarmClocks() { alarmMinutes = Convert.ToInt32(Minutes.Text), alarmHours = Convert.ToInt32(Hours.Text), alarmDate = Convert.ToDateTime(Calendar.SelectedDate),
-            alarmMessage = message.Text});
+            alarmclock.Add(new AlarmClocks() { AlarmMinutes = Convert.ToInt32(Minutes.Text), AlarmHours = Convert.ToInt32(Hours.Text), AlarmSeconds = Convert.ToInt32(Seconds.Text), AlarmDate = Convert.ToDateTime(Calendar.SelectedDate),
+            AlarmMessage = message.Text});
             MessageBox.Show("New alarm clock added!");
-            dataGrid1.ItemsSource = alarmclock;
+            dataGrid.ItemsSource = alarmclock;
         }
         
         void Timer_Tick(object sender, EventArgs e)
@@ -59,25 +59,27 @@ namespace AlarmClock
             DateTime currentTime = DateTime.Now;
             foreach (var al in alarmclock.ToList<AlarmClocks>())
             {
-                if (currentTime.Hour == al.alarmHours && currentTime.Minute == al.alarmMinutes && currentTime.Date == al.alarmDate)
+                if (currentTime.Hour == al.AlarmHours && currentTime.Minute == al.AlarmMinutes && currentTime.Date == al.AlarmDate && currentTime.Second == al.AlarmSeconds)
                 {
                     try
                     {
                         if (sound.Source == null)
                         {
                             sound.Open(new Uri("sounds/basic.wav", UriKind.Relative));
+
                         }
                         sound.Play();
-                        if (al.alarmMessage != "")
+                        dataGrid.Items.Refresh();
+                        if (al.AlarmMessage != "")
                         {
-                            MessageBox.Show(al.alarmMessage);
+                            MessageBox.Show(al.AlarmMessage);
                         }
                     }
                     catch
                     {
                         MessageBox.Show("finished!");
                     }
-                    alarmclock.Remove(al);
+                    al.AlarmIsCalled = true;
                 }
             }
         }
@@ -139,11 +141,11 @@ namespace AlarmClock
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
 
-            if (dataGrid1.SelectedItems.Count > 0)
+            if (dataGrid.SelectedItems.Count > 0)
             {
-                for (int i = 0; i < dataGrid1.SelectedItems.Count; i++)
+                for (int i = 0; i < dataGrid.SelectedItems.Count; i++)
                 {
-                    AlarmClocks clocks = dataGrid1.SelectedItems[i] as AlarmClocks;
+                    AlarmClocks clocks = dataGrid.SelectedItems[i] as AlarmClocks;
                     if (clocks != null)
                     {
                         alarmclock.Remove(clocks);
@@ -156,25 +158,26 @@ namespace AlarmClock
         {
             UpdateWindow updateWindow = new UpdateWindow();
             updateWindow.ShowDialog();
-            int newminutes = updateWindow.newminutes;
-            int newhours = updateWindow.newhours;
-            string newmessage = updateWindow.newmessage;
-            DateTime newday = updateWindow.newdays;
-            if (dataGrid1.SelectedItems.Count > 0)
+            int newminutes = updateWindow.NewMinutes;
+            int newhours = updateWindow.NewHours;
+            string newmessage = updateWindow.NewMessage;
+            DateTime newday = updateWindow.NewDay;
+            if (dataGrid.SelectedItems.Count > 0)
             {
-                for (int i = 0; i < dataGrid1.SelectedItems.Count; i++)
+                for (int i = 0; i < dataGrid.SelectedItems.Count; i++)
                 {
-                    AlarmClocks clocks = dataGrid1.SelectedItems[i] as AlarmClocks;
+                    AlarmClocks clocks = dataGrid.SelectedItems[i] as AlarmClocks;
 
                     if (clocks != null)
                     {
-                        clocks.alarmMinutes = newminutes;
-                        clocks.alarmHours = newhours;
-                        clocks.alarmDate = newday;
-                        clocks.alarmMessage = newmessage;
+                        clocks.AlarmMinutes = newminutes;
+                        clocks.AlarmHours = newhours;
+                        clocks.AlarmDate = newday;
+                        clocks.AlarmMessage = newmessage;
                     }
                 }
             }
+           dataGrid.Items.Refresh();
         }
 
         private void ThemeWindow_Click(object sender, RoutedEventArgs e)
@@ -208,13 +211,35 @@ namespace AlarmClock
                 using (FileStream fs = new FileStream("alarmClocks.xml", FileMode.OpenOrCreate))
                 {
                     ObservableCollection<AlarmClocks> alarmclock = (ObservableCollection<AlarmClocks>)formatter.Deserialize(fs);
-                    dataGrid1.ItemsSource = alarmclock;
+                    dataGrid.ItemsSource = alarmclock;
                 }
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void AlarmSnooze_Click(object sender, RoutedEventArgs e)
+        {
+            AlarmSnoozeWindow snoozeWindow = new AlarmSnoozeWindow();
+            snoozeWindow.ShowDialog();
+            int sMinutes = snoozeWindow.DelayHours;
+            int sHours = snoozeWindow.DelayHours;
+            int sSeconds = snoozeWindow.DelaySeconds;
+            DateTime currentTime = DateTime.Now;
+
+            alarmclock.Add(new AlarmClocks()
+            {
+                AlarmMinutes = currentTime.Minute + sMinutes,
+                AlarmSeconds = currentTime.Second +sSeconds,
+                AlarmHours = currentTime.Hour + sHours,
+                AlarmDate = currentTime.Date,
+            });
+            sound.Stop();
+            MessageBox.Show("Alarm Clock is snoozed!");
+            dataGrid.ItemsSource = alarmclock;
+            timer.Start();
         }
     }
 }

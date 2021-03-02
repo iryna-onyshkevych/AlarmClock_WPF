@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AlarmClock"
         mc:Ignorable="d"
-        Title="AlarmClock" Height="450" Width="650">
+        Title="AlarmClock" Height="450" Width="700">
     <Window.Resources>
         <SolidColorBrush x:Key="brashBackground" Color="Bisque"></SolidColorBrush>
         <SolidColorBrush x:Key="brashtwoBackground" Color="Gainsboro"></SolidColorBrush>
@@ -26,7 +26,7 @@
 
         <Label Name="TimeLabel" FontSize="48" HorizontalAlignment="Right" VerticalAlignment="top" Margin="10,40,10,10" />
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="40 40 0 0" Height="120" Background="LightBlue" >
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="40,52,0,12.8" Height="120" Background="LightBlue" Width="446" >
             <DatePicker HorizontalAlignment="Left" VerticalAlignment="Center" Name="Calendar" FirstDayOfWeek="Monday" IsTodayHighlighted="False"/>
             <TextBox Width="50" Height="50" Name="message"></TextBox>
             <StackPanel Orientation="Horizontal" Height="90" Margin="0,0,0,0.4" Background="LightBlue" >
@@ -39,6 +39,8 @@
                 <TextBox x:Name="Hours"  Text="12" Height="38" Width="45" FontSize="23" />
                 <TextBox Text=":" FontSize="28" Height="38"  Focusable="False"/>
                 <TextBox x:Name="Minutes" Height="38" Width="45" FontSize="23" Text="0" TextAlignment="Center"/>
+                <TextBox Text=":" FontSize="28" Height="38" Focusable="False"/>
+                <TextBox x:Name="Seconds" Height="38" Width="45" FontSize="23" Text="0" TextAlignment="Center"/>
                 <StackPanel VerticalAlignment="Center" Margin="5">
                     <Button x:Name="btnMinutesUp" Margin="5" Height="18" Width="50" FontFamily="Marlett" FontSize="20" Content="5" Click="MinutesUp_Click" Background="Lavender"/>
                     <Button x:Name="btnMinutesDown" Margin="5" Height="18" Width="50" FontFamily="Marlett" FontSize="20" Content="6"  Click="MinutesDown_Click" Background="Lavender"/>
@@ -46,11 +48,11 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Height="50" Width="158" Margin="142,0.2,0,0.2"  HorizontalAlignment="Left">
-            <Button Height="30" Width="30" Background="LightGoldenrodYellow" Content="off" Margin="10" Click="SoundOff_Click"></Button>
-            <Button Height="30" Width="30" Background="LightPink" Content="add" Margin="10"  Click="AddAlClock_Click"></Button>
-            <Button Height="30" Width="30" Background="LightCoral" Content="on" HorizontalAlignment="Left" Margin="10" Click="AlClockOn_Click"></Button>
-            <!--<Button Width="30" Background="LightCoral" Content="Show" HorizontalAlignment="Left" Margin="10,0,10,9.6" Click="AlClockListShow_Click" Height="30" VerticalAlignment="Bottom"/>-->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Height="50" Width="251" Margin="142,0.2,0,0.2"  HorizontalAlignment="Left">
+            <Button Height="30" Width="40" Background="LightGoldenrodYellow" Content="off" Margin="10" Click="SoundOff_Click"></Button>
+            <Button Height="30" Width="40" Background="LightPink" Content="add" Margin="10"  Click="AddAlClock_Click"></Button>
+            <Button Height="30" Width="40" Background="LightCoral" Content="on" HorizontalAlignment="Left" Margin="10" Click="AlClockOn_Click"></Button>
+            <Button Width="45" Background="DeepPink" Content="snooze" HorizontalAlignment="Left" Margin="10,0,10,9.6" Click="AlarmSnooze_Click" Height="30" VerticalAlignment="Bottom"/>
 
         </StackPanel>
 
@@ -61,7 +63,17 @@
                     <ColumnDefinition Width="153*"/>
                     <ColumnDefinition Width="321*"/>
                 </Grid.ColumnDefinitions>
-                <DataGrid  Height="148" HorizontalAlignment="Left" Margin="40,20,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="350" Grid.ColumnSpan="3" />
+                <DataGrid  Height="148" HorizontalAlignment="Left" Margin="40,20,0,0" Name="dataGrid" VerticalAlignment="Top" Width="350" Grid.ColumnSpan="3" >
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding AlarmIsCalled}" Value="true">
+                                    <Setter Property="Background" Value="LightPink"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                </DataGrid>
                 <Button Click="Update_Click" Width="45" Height="25"  HorizontalAlignment="Left" Margin="97.6,92,0,81.8" Background="AliceBlue" Grid.Column="2" >Update</Button>
                 <Button Click="Delete_Click" Width="45" Height="25"  HorizontalAlignment="Left" Margin="97.6,122,0,41.8" Background="AliceBlue" Grid.Column="2" >Delete</Button>
                 <Button Click="SaveList_Click" Width="45" Height="25"  HorizontalAlignment="Left" Margin="97.6,65,0,118.8" Background="AliceBlue" Grid.Column="2" >Save</Button>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -36,7 +37,7 @@ namespace AlarmClock
                     MessageBox.Show(selectedItem.Content.ToString());
                     break;
                 case "theme3":
-                    Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                    OpenFileDialog dlg = new OpenFileDialog();
                     dlg.FileName = "Audio";
                     dlg.DefaultExt = ".wav";
                     dlg.Filter = "Audio (.wav)|*.wav";

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\App.xaml
-41552218596
+51954016661
 
-101472430071
+111279855400
 13-1505183044
-MainWindow.xaml;SoundSettingsWindow.xaml;ThemeSettingsWindow.xaml;UpdateWindow.xaml;
+AlarmSnoozeWindow.xaml;MainWindow.xaml;SoundSettingsWindow.xaml;ThemeSettingsWindow.xaml;UpdateWindow.xaml;
 
 True
 

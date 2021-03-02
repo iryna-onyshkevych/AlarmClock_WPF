@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfAlarmClocks xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <AlarmClocks>
-    <alarmMinutes>0</alarmMinutes>
-    <alarmHours>12</alarmHours>
-    <alarmDate>0001-01-01T00:00:00</alarmDate>
-    <alarmMessage />
+    <alarmMinutes>34</alarmMinutes>
+    <alarmHours>21</alarmHours>
+    <alarmSeconds>10</alarmSeconds>
+    <alarmDate>2021-03-02T00:00:00</alarmDate>
+    <alarmMessage>g</alarmMessage>
+    <alIsCalled>true</alIsCalled>
+  </AlarmClocks>
+  <AlarmClocks>
+    <alarmMinutes>34</alarmMinutes>
+    <alarmHours>21</alarmHours>
+    <alarmSeconds>10</alarmSeconds>
+    <alarmDate>2021-03-02T00:00:00</alarmDate>
+    <alarmMessage>g</alarmMessage>
+    <alIsCalled>false</alIsCalled>
+  </AlarmClocks>
+  <AlarmClocks>
+    <alarmMinutes>35</alarmMinutes>
+    <alarmHours>21</alarmHours>
+    <alarmSeconds>10</alarmSeconds>
+    <alarmDate>2021-03-02T00:00:00</alarmDate>
+    <alarmMessage>g</alarmMessage>
+    <alIsCalled>true</alIsCalled>
+  </AlarmClocks>
+  <AlarmClocks>
+    <alarmMinutes>36</alarmMinutes>
+    <alarmHours>21</alarmHours>
+    <alarmSeconds>0</alarmSeconds>
+    <alarmDate>2021-03-02T00:00:00+02:00</alarmDate>
+    <alIsCalled>false</alIsCalled>
   </AlarmClocks>
 </ArrayOfAlarmClocks>
