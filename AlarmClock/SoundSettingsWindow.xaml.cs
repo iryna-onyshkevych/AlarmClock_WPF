@@ -28,11 +28,11 @@ namespace AlarmClock
             switch (audioname)
             {
                 case "theme1":
-                    ((MainWindow)Application.Current.MainWindow).sound.Open(new Uri(@"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic2.wav"));
+                    ((MainWindow)Application.Current.MainWindow).sound.Open(new Uri("sounds/basic2.wav", UriKind.Relative));
                     MessageBox.Show(selectedItem.Content.ToString());
                     break;
                 case "theme2":
-                    ((MainWindow)Application.Current.MainWindow).sound.Open(new Uri(@"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic.wav"));
+                    ((MainWindow)Application.Current.MainWindow).sound.Open(new Uri("sounds/basic.wav", UriKind.Relative));
                     MessageBox.Show(selectedItem.Content.ToString());
                     break;
                 case "theme3":
@@ -47,10 +47,6 @@ namespace AlarmClock
                         ((MainWindow)Application.Current.MainWindow).sound.Open(new Uri(filename));
                     }
                     break;
-                //default:
-                //    ((MainWindow)Application.Current.MainWindow).sound.Open(new Uri(@"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic.wav"));
-                //    MessageBox.Show(selectedItem.Content.ToString());
-                //    break;
             }
         }
     }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
+using System.Xml.Serialization;
 
 namespace AlarmClock
 {
@@ -17,6 +18,7 @@ namespace AlarmClock
         DispatcherTimer timer1 = new DispatcherTimer();
         public MediaPlayer sound = new MediaPlayer();
         public ObservableCollection<AlarmClocks> alarmclock = new ObservableCollection<AlarmClocks>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -25,12 +27,8 @@ namespace AlarmClock
             timer1.Interval = TimeSpan.FromSeconds(1);
             timer1.Tick += Timer1_Tick;
             timer1.Start();
-            //DataContext = alarmclock;
-            //Style style = this.FindResource("brashBackground") as Style;
-            //btnHoursDown.Style = style;
         }
 
-      
         void Timer1_Tick(object sender, EventArgs e)
         {
             TimeLabel.Content = DateTime.Now.ToLongTimeString();
@@ -45,7 +43,6 @@ namespace AlarmClock
         private void SoundOff_Click(object sender, RoutedEventArgs e)
         {
             sound.Stop();
-            //MessageBox.Show("Your sound is stopped", "Stopping...");
         }
 
         private void AddAlClock_Click(object sender, RoutedEventArgs e)
@@ -54,6 +51,11 @@ namespace AlarmClock
             alarmMessage = message.Text});
             MessageBox.Show("New alarm clock added!");
             dataGrid1.ItemsSource = alarmclock;
+            XmlSerializer formatter = new XmlSerializer(typeof(ObservableCollection<AlarmClocks>));
+            using (FileStream fs = new FileStream("alarmClocks.xml", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, alarmclock);
+            }
         }
         void Timer_Tick(object sender, EventArgs e)
         {
@@ -67,7 +69,8 @@ namespace AlarmClock
                     {
                         if (sound.Source == null)
                         {
-                            sound.Open(new Uri( @"C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\basic.wav"));
+                            sound.Open(new Uri("sounds/basic.wav", UriKind.Relative));
+
                         }
                         sound.Play();
                         if (al.alarmMessage != "")
@@ -84,6 +87,7 @@ namespace AlarmClock
             }
 
         }
+
         private void HoursUp_Click(object sender, RoutedEventArgs e)
         {
             var curHour = int.Parse(this.Hours.Text);
@@ -173,7 +177,6 @@ namespace AlarmClock
                 for (int i = 0; i < dataGrid1.SelectedItems.Count; i++)
                 {
                     AlarmClocks clocks = dataGrid1.SelectedItems[i] as AlarmClocks;
-                    //MessageBox.Show(newminutes.ToString());
 
                     if (clocks != null)
                     {
@@ -181,6 +184,11 @@ namespace AlarmClock
                         clocks.alarmHours = newhours;
                         clocks.alarmDate = newday;
                         clocks.alarmMessage = newmessage;
+                        XmlSerializer formatter = new XmlSerializer(typeof(ObservableCollection<AlarmClocks>));
+                        using (FileStream fs = new FileStream("alarmClocks.xml", FileMode.OpenOrCreate))
+                        {
+                            formatter.Serialize(fs, alarmclock);
+                        }
                     }
                 }
             }
