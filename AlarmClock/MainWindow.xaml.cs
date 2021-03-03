@@ -19,6 +19,8 @@ namespace AlarmClock
         readonly DispatcherTimer timer = new DispatcherTimer();
         public SoundPlayer sound = new SoundPlayer();
         public ObservableCollection<AlarmClocks> alarmclock = new ObservableCollection<AlarmClocks>();
+        public const int maxHours = 23;
+        public const int maxMinutes = 59;
 
         public MainWindow()
         {
@@ -70,7 +72,6 @@ namespace AlarmClock
                             sound.Stream = Properties.Resources.basic;
                         }
                         sound.PlayLooping();
-
                         dataGrid.Items.Refresh();
                         if (al.AlarmMessage != "")
                         {
@@ -90,7 +91,7 @@ namespace AlarmClock
         {
             var curHour = int.Parse(this.Hours.Text);
             curHour++;
-            if (curHour > 23)
+            if (curHour > maxHours)
             {
                 curHour = 0;
                 this.Hours.Text = curHour.ToString();
@@ -104,7 +105,7 @@ namespace AlarmClock
             curHour--;
             if (curHour < 0)
             {
-                curHour = 23;
+                curHour = maxHours;
                 this.Hours.Text = curHour.ToString();
             }
             this.Hours.Text = curHour.ToString();
@@ -114,7 +115,7 @@ namespace AlarmClock
         {
             var curMinute = int.Parse(this.Minutes.Text);
             curMinute++;
-            if (curMinute > 59)
+            if (curMinute > maxMinutes)
             {
                 curMinute = 0;
                 this.Minutes.Text = curMinute.ToString();
@@ -128,7 +129,7 @@ namespace AlarmClock
             curMinute--;
             if (curMinute < 0)
             {
-                curMinute = 59;
+                curMinute = maxMinutes;
                 this.Minutes.Text = curMinute.ToString();
             }
             this.Minutes.Text = curMinute.ToString();
@@ -160,10 +161,6 @@ namespace AlarmClock
         {
             UpdateWindow updateWindow = new UpdateWindow();
             updateWindow.ShowDialog();
-            //int newminutes = updateWindow.NewMinutes;
-            //int newhours = updateWindow.NewHours;
-            //string newmessage = updateWindow.NewMessage;
-            //DateTime newday = updateWindow.NewDay;
             if (dataGrid.SelectedItems.Count > 0)
             {
                 for (int i = 0; i < dataGrid.SelectedItems.Count; i++)
@@ -220,9 +217,6 @@ namespace AlarmClock
         {
             AlarmSnoozeWindow snoozeWindow = new AlarmSnoozeWindow();
             snoozeWindow.ShowDialog();
-            //int sMinutes = snoozeWindow.DelayMinutes;
-            //int sHours = snoozeWindow.DelayHours;
-            //int sSeconds = snoozeWindow.DelaySeconds;
             DateTime currentTime = DateTime.Now;
 
             alarmclock.Add(new AlarmClocks()

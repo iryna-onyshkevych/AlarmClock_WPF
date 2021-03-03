@@ -31,6 +31,7 @@ namespace AlarmClock
             string audioname = selectedItem.Name.ToString();
 
             switch (audioname) { 
+
             case "theme1":
                 SoundStream(paths[0]);
                     break;

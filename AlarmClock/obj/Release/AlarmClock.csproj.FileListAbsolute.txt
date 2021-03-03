@@ -18,3 +18,4 @@ C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\Ala
 C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Release\AlarmClock.csproj.CoreCompileInputs.cache
 C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Release\AlarmClock.exe
 C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Release\AlarmClock.pdb
+C:\Users\irini\OneDrive\Робочий стіл\AlarmClockProject\AlarmClock\AlarmClock\obj\Release\AlarmClock.csprojAssemblyReference.cache
