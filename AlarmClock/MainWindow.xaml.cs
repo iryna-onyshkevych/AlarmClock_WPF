@@ -14,19 +14,19 @@ namespace AlarmClock
     /// </summary>
     public partial class MainWindow : Window
     {
+        readonly DispatcherTimer clockTimer = new DispatcherTimer();
         readonly DispatcherTimer timer = new DispatcherTimer();
-        readonly DispatcherTimer timer1 = new DispatcherTimer();
         public MediaPlayer sound = new MediaPlayer();
         public ObservableCollection<AlarmClocks> alarmclock = new ObservableCollection<AlarmClocks>();
 
         public MainWindow()
         {
             InitializeComponent();
+            clockTimer.Interval = TimeSpan.FromSeconds(1);
+            clockTimer.Tick += Timer_Tick;
             timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
-            timer1.Interval = TimeSpan.FromSeconds(1);
-            timer1.Tick += Timer1_Tick;
-            timer1.Start();
+            timer.Tick += Timer1_Tick;
+            timer.Start();
         }
 
         void Timer1_Tick(object sender, EventArgs e)
@@ -36,7 +36,7 @@ namespace AlarmClock
 
         private void AlClockOn_Click(object sender, RoutedEventArgs e)
         {
-            timer.Start();
+            clockTimer.Start();
             MessageBox.Show("Alarm Clock's are on", "Starting...");
         }
 
@@ -208,11 +208,11 @@ namespace AlarmClock
             {
                 XmlSerializer formatter = new XmlSerializer(typeof(ObservableCollection<AlarmClocks>));
 
-                using (FileStream fs = new FileStream("alarmClocks.xml", FileMode.OpenOrCreate))
-                {
-                    ObservableCollection<AlarmClocks> alarmclock = (ObservableCollection<AlarmClocks>)formatter.Deserialize(fs);
-                    dataGrid.ItemsSource = alarmclock;
-                }
+                string xmlString = "alarmClocks.xml";
+                StreamReader reader =  new StreamReader(xmlString);
+                alarmclock = (ObservableCollection<AlarmClocks>)formatter.Deserialize(reader);
+                reader.Close();
+                dataGrid.ItemsSource = alarmclock;
             }
             catch(Exception ex)
             {
@@ -239,7 +239,7 @@ namespace AlarmClock
             sound.Stop();
             MessageBox.Show("Alarm Clock is snoozed!");
             dataGrid.ItemsSource = alarmclock;
-            timer.Start();
+            clockTimer.Start();
         }
     }
 }

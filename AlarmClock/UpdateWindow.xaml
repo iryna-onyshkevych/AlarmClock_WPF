@@ -6,6 +6,14 @@
         xmlns:local="clr-namespace:AlarmClock"
         mc:Ignorable="d"
         Title="UpdateWindow" Height="250" Width="300">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Button.FontFamily" Value="Constantia"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Button.FontFamily" Value="Constantia"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -23,7 +31,7 @@
         <TextBox Grid.Row="2" Name="alday" Margin="60,0,0,0"></TextBox>
         <Label Grid.Row="3">Message</Label>
         <TextBox Grid.Row="3" Name="almessage" Margin="60,0,0,0"></TextBox>
-        <Button Grid.Row="4" Name="Submit" Click="Submit_Click" Background="AliceBlue">OK</Button>
+        <Button Grid.Row="4" Name="Submit" Click="Submit_Click" Background="AliceBlue" FontFamily="Constantia">OK</Button>
     </Grid>
     
 </Window>
