@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AlarmClock"
         mc:Ignorable="d"
-        Title="AlarmClock" Height="450" Width="700">
+        Title="AlarmClock" Height="450" Width="700" Icon="clock.png">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Button.FontFamily" Value="Constantia" />
@@ -33,7 +33,6 @@
         <Menu Height="20" VerticalAlignment="Top" Background="LightBlue">
             <MenuItem Header="Settings"  FontFamily="Constantia">
                 <MenuItem Header="Sound" Click="SettingsWindow_Click"  FontFamily="Constantia"></MenuItem>
-                <MenuItem Header="Theme" Click="ThemeWindow_Click"  FontFamily="Constantia"></MenuItem>
             </MenuItem>
         </Menu>
 

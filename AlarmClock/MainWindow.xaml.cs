@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -16,12 +17,13 @@ namespace AlarmClock
     {
         readonly DispatcherTimer clockTimer = new DispatcherTimer();
         readonly DispatcherTimer timer = new DispatcherTimer();
-        public MediaPlayer sound = new MediaPlayer();
+        public SoundPlayer sound = new SoundPlayer();
         public ObservableCollection<AlarmClocks> alarmclock = new ObservableCollection<AlarmClocks>();
 
         public MainWindow()
         {
             InitializeComponent();
+            
             clockTimer.Interval = TimeSpan.FromSeconds(1);
             clockTimer.Tick += Timer_Tick;
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -63,12 +65,12 @@ namespace AlarmClock
                 {
                     try
                     {
-                        if (sound.Source == null)
+                        if (sound.Stream == null)
                         {
-                            sound.Open(new Uri("sounds/basic.wav", UriKind.Relative));
-
+                            sound.Stream = Properties.Resources.basic;
                         }
-                        sound.Play();
+                        sound.PlayLooping();
+
                         dataGrid.Items.Refresh();
                         if (al.AlarmMessage != "")
                         {
@@ -158,10 +160,10 @@ namespace AlarmClock
         {
             UpdateWindow updateWindow = new UpdateWindow();
             updateWindow.ShowDialog();
-            int newminutes = updateWindow.NewMinutes;
-            int newhours = updateWindow.NewHours;
-            string newmessage = updateWindow.NewMessage;
-            DateTime newday = updateWindow.NewDay;
+            //int newminutes = updateWindow.NewMinutes;
+            //int newhours = updateWindow.NewHours;
+            //string newmessage = updateWindow.NewMessage;
+            //DateTime newday = updateWindow.NewDay;
             if (dataGrid.SelectedItems.Count > 0)
             {
                 for (int i = 0; i < dataGrid.SelectedItems.Count; i++)
@@ -170,20 +172,14 @@ namespace AlarmClock
 
                     if (clocks != null)
                     {
-                        clocks.AlarmMinutes = newminutes;
-                        clocks.AlarmHours = newhours;
-                        clocks.AlarmDate = newday;
-                        clocks.AlarmMessage = newmessage;
+                        clocks.AlarmMinutes = updateWindow.NewMinutes;
+                        clocks.AlarmHours = updateWindow.NewHours;
+                        clocks.AlarmDate = updateWindow.NewDay;
+                        clocks.AlarmMessage = updateWindow.NewMessage;
                     }
                 }
             }
            dataGrid.Items.Refresh();
-        }
-
-        private void ThemeWindow_Click(object sender, RoutedEventArgs e)
-        {
-            ThemeSettingsWindow themeSettings = new ThemeSettingsWindow();
-            themeSettings.Show();
         }
 
         private void SaveList_Click(object sender, RoutedEventArgs e)
@@ -224,16 +220,16 @@ namespace AlarmClock
         {
             AlarmSnoozeWindow snoozeWindow = new AlarmSnoozeWindow();
             snoozeWindow.ShowDialog();
-            int sMinutes = snoozeWindow.DelayHours;
-            int sHours = snoozeWindow.DelayHours;
-            int sSeconds = snoozeWindow.DelaySeconds;
+            //int sMinutes = snoozeWindow.DelayMinutes;
+            //int sHours = snoozeWindow.DelayHours;
+            //int sSeconds = snoozeWindow.DelaySeconds;
             DateTime currentTime = DateTime.Now;
 
             alarmclock.Add(new AlarmClocks()
             {
-                AlarmMinutes = currentTime.Minute + sMinutes,
-                AlarmSeconds = currentTime.Second +sSeconds,
-                AlarmHours = currentTime.Hour + sHours,
+                AlarmMinutes = currentTime.Minute + snoozeWindow.DelayMinutes,
+                AlarmSeconds = currentTime.Second + snoozeWindow.DelaySeconds,
+                AlarmHours = currentTime.Hour + snoozeWindow.DelayHours,
                 AlarmDate = currentTime.Date,
             });
             sound.Stop();

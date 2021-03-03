@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>clock.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -61,9 +64,6 @@
     <Compile Include="SoundSettingsWindow.xaml.cs">
       <DependentUpon>SoundSettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ThemeSettingsWindow.xaml.cs">
-      <DependentUpon>ThemeSettingsWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UpdateWindow.xaml.cs">
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
@@ -85,10 +85,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SoundSettingsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ThemeSettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,6 +118,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="clock.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="sound\basic.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="sound\basic2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
