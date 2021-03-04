@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AlarmClock"
         mc:Ignorable="d"
-        Title="SoundSettingsWindow" Height="230" Width="280">
+        Title="SoundSettingsWindow" ResizeMode="NoResize" Height="230" Width="280">
     <Window.Resources>
         <Style TargetType="ComboBoxItem">
             <Setter Property="Button.FontFamily" Value="Constantia"/>

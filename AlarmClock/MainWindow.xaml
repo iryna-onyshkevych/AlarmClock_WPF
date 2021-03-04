@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AlarmClock"
         mc:Ignorable="d"
-        Title="AlarmClock" Height="450" Width="700" Icon="clock.png">
+        Title="AlarmClock" ResizeMode="NoResize" Height="450" Width="700" Icon="clock.png">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Button.FontFamily" Value="Constantia" />

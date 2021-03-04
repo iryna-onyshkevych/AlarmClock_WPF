@@ -20,7 +20,7 @@ namespace AlarmClock
         public SoundPlayer sound = new SoundPlayer();
         public ObservableCollection<AlarmClocks> alarmclock = new ObservableCollection<AlarmClocks>();
         public const int maxHours = 23;
-        public const int maxMinutes = 59;
+        public static int maxMinutes = 59;
 
         public MainWindow()
         {
@@ -160,23 +160,22 @@ namespace AlarmClock
         private void Update_Click(object sender, RoutedEventArgs e)
         {
             UpdateWindow updateWindow = new UpdateWindow();
+            AlarmClocks clocks = dataGrid.SelectedItem as AlarmClocks;
+            updateWindow.alminute.Text = clocks.AlarmMinutes.ToString();
+            updateWindow.alhour.Text = clocks.AlarmHours.ToString();
+            updateWindow.alday.Text = clocks.AlarmDate.ToString();
+            updateWindow.almessage.Text = clocks.AlarmMessage;
             updateWindow.ShowDialog();
-            if (dataGrid.SelectedItems.Count > 0)
-            {
-                for (int i = 0; i < dataGrid.SelectedItems.Count; i++)
-                {
-                    AlarmClocks clocks = dataGrid.SelectedItems[i] as AlarmClocks;
 
-                    if (clocks != null)
-                    {
-                        clocks.AlarmMinutes = updateWindow.NewMinutes;
-                        clocks.AlarmHours = updateWindow.NewHours;
-                        clocks.AlarmDate = updateWindow.NewDay;
-                        clocks.AlarmMessage = updateWindow.NewMessage;
-                    }
-                }
+            if (clocks != null)
+            {
+                clocks.AlarmMinutes = updateWindow.NewMinutes;
+                clocks.AlarmHours = updateWindow.NewHours;
+                clocks.AlarmDate = updateWindow.NewDay;
+                clocks.AlarmMessage = updateWindow.NewMessage;
             }
-           dataGrid.Items.Refresh();
+
+            dataGrid.Items.Refresh();
         }
 
         private void SaveList_Click(object sender, RoutedEventArgs e)

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AlarmClock"
         mc:Ignorable="d"
-        Title="AlarmSnoozeWindow" Height="150" Width="200">
+        Title="AlarmSnoozeWindow" ResizeMode="NoResize" Height="150" Width="200">
     <Window.Resources>
         <Style TargetType="Label">
             <Setter Property="Button.FontFamily" Value="Constantia"/>
